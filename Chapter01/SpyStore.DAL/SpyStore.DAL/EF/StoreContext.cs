@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SpyStore.Models.Entities;
 
 namespace SpyStore.DAL.EF
 {
@@ -37,5 +38,8 @@ namespace SpyStore.DAL.EF
             //options => options.EnableRetryOnFailure());
             //} 
         }
+
+        public DbSet<Category> Categories { get; set; }
+   
     }
 }
