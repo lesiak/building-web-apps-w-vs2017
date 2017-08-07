@@ -65,5 +65,17 @@ namespace SpyStore.DAL.Tests.ContextTests
             Assert.NotNull(category.TimeStamp);
             Assert.Equal(1, _db.Categories.Count());
         }
+
+        [Fact]
+        public void ShouldGetAllCategoriesOrderedByName()
+        {
+            _db.Categories.Add(new Category { CategoryName = "Foo" });
+            _db.Categories.Add(new Category { CategoryName = "Bar" });
+            _db.SaveChanges();
+            var categories = _db.Categories.OrderBy(c => c.CategoryName).ToList();
+            Assert.Equal(2, _db.Categories.Count());
+            Assert.Equal("Bar", categories[0].CategoryName);
+            Assert.Equal("Foo", categories[1].CategoryName);
+        }
     }
 }
