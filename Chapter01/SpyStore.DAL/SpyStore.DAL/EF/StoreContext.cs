@@ -6,7 +6,7 @@ using SpyStore.Models.Entities;
 
 namespace SpyStore.DAL.EF
 {
-    class StoreContext : DbContext
+    public class StoreContext : DbContext
     {
         public StoreContext()
         {

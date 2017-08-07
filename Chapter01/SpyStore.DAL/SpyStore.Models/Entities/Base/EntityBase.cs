@@ -9,6 +9,6 @@ namespace SpyStore.Models.Entities.Base
         public int Id { get; set; }
 
         [Timestamp]
-        public byte[] Timestamp { get; set; }
+        public byte[] TimeStamp { get; set; }
     }
 }
