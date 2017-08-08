@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
 using SpyStore.Models.Entities;
 
 namespace SpyStore.DAL.EF
@@ -37,6 +38,10 @@ namespace SpyStore.DAL.EF
             //@"Server=(localdb)\mssqllocaldb;Database=SpyStore;Trusted_Connection=True;MultipleActiveResultSets=true;",
             //options => options.EnableRetryOnFailure());
             //} 
+
+            LoggerFactory loggerFactory = new LoggerFactory();
+            loggerFactory.AddProvider(new TraceLoggerProvider());
+            optionsBuilder.UseLoggerFactory(loggerFactory);
         }
 
         public DbSet<Category> Categories { get; set; }
