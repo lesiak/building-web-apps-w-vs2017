@@ -39,8 +39,11 @@ namespace SpyStore.DAL.EF
             //options => options.EnableRetryOnFailure());
             //} 
 
-            LoggerFactory loggerFactory = new LoggerFactory();
-            loggerFactory.AddProvider(new TraceLoggerProvider());
+            var loggerFactory = new LoggerFactory();
+            loggerFactory
+                .AddConsole(LogLevel.Debug)
+                .AddDebug(LogLevel.Debug);
+            //loggerFactory.AddProvider(new TraceLoggerProvider());
             optionsBuilder.UseLoggerFactory(loggerFactory);
         }
 
