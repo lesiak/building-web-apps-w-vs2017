@@ -95,6 +95,7 @@ namespace SpyStore.DAL.Repos
                 LineItemTotal = scr.Quantity * p.CurrentPrice,
                 TimeStamp = scr.TimeStamp
             };
+
         public CartRecordWithProductInfo GetShoppingCartRecord(
             int customerId, int productId)
             => Table
