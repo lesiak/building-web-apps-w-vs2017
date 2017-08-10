@@ -28,7 +28,7 @@ namespace SpyStore.DAL.Tests.Repos
         public void ShouldGetAllOrderDetails()
         {
             var orders = _repo.GetAll().ToList();
-            Assert.Equal(_repo.Count,orders.Count());
+            Assert.Equal(_repo.Count,orders.Count);
         }
 
         [Fact]

@@ -35,7 +35,7 @@ namespace SpyStore.DAL.Tests.Repos
         public void ShouldGetAllProductsForACategory(int catId, int productCount)
         {
             var prods = _repo.GetProductsForCategory(catId).ToList();
-            Assert.Equal(productCount,prods.Count());
+            Assert.Equal(productCount,prods.Count);
         }
     }
 }

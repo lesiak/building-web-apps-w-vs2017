@@ -19,8 +19,8 @@ namespace SpyStore.DAL.Tests.Repos
             _repo = new ShoppingCartRepo(new ProductRepo());
             StoreDataInitializer.ClearData(_repo.Context);
             StoreDataInitializer.InitializeData(_repo.Context);
-
         }
+
         public void Dispose()
         {
             //StoreDataInitializer.ClearData(_repo.Context);
@@ -30,7 +30,7 @@ namespace SpyStore.DAL.Tests.Repos
         [Fact]
         public void ShouldAddAnItemToTheCart()
         {
-            var item = new ShoppingCartRecord()
+            var item = new ShoppingCartRecord
             {
                 ProductId = 2,
                 Quantity = 3,
@@ -39,14 +39,15 @@ namespace SpyStore.DAL.Tests.Repos
             };
             _repo.Add(item);
             var shoppingCartRecords = _repo.GetAll().ToList();
-            Assert.Equal(2,shoppingCartRecords.Count);
-            Assert.Equal(2,shoppingCartRecords[0].ProductId);
-            Assert.Equal(3,shoppingCartRecords[0].Quantity);
+            Assert.Equal(2, shoppingCartRecords.Count);
+            Assert.Equal(2, shoppingCartRecords[0].ProductId);
+            Assert.Equal(3, shoppingCartRecords[0].Quantity);
         }
+
         [Fact]
         public void ShouldUpdateQuantityOnAddIfAlreadyInCart()
         {
-            var item = new ShoppingCartRecord()
+            var item = new ShoppingCartRecord
             {
                 ProductId = 32,
                 Quantity = 1,
@@ -55,14 +56,14 @@ namespace SpyStore.DAL.Tests.Repos
             };
             _repo.Add(item);
             var shoppingCartRecords = _repo.GetAll().ToList();
-            Assert.Equal(1,shoppingCartRecords.Count);
-            Assert.Equal(2,shoppingCartRecords[0].Quantity);
+            Assert.Equal(1, shoppingCartRecords.Count);
+            Assert.Equal(2, shoppingCartRecords[0].Quantity);
         }
 
         [Fact]
         public void ShouldDeleteOnAddIfQuantityEqualZero()
         {
-            var item = new ShoppingCartRecord()
+            var item = new ShoppingCartRecord
             {
                 ProductId = 30,
                 Quantity = -1,
@@ -71,13 +72,13 @@ namespace SpyStore.DAL.Tests.Repos
             };
             _repo.Add(item);
             var shoppingCartRecords = _repo.GetAll().ToList();
-            Assert.Equal(0,shoppingCartRecords.Count(x => x.ProductId==34));
+            Assert.Equal(0, shoppingCartRecords.Count(x => x.ProductId == 34));
         }
 
         [Fact]
         public void ShouldDeleteOnAddIfQuantityLessThanZero()
         {
-            var item = new ShoppingCartRecord()
+            var item = new ShoppingCartRecord
             {
                 ProductId = 32,
                 Quantity = -10,
@@ -85,8 +86,9 @@ namespace SpyStore.DAL.Tests.Repos
                 CustomerId = 0
             };
             _repo.Add(item);
-            Assert.Equal(0,_repo.Count);
+            Assert.Equal(0, _repo.Count);
         }
+
         [Fact]
         public void ShouldUpdateQuantity()
         {
@@ -95,7 +97,7 @@ namespace SpyStore.DAL.Tests.Repos
             item.DateCreated = DateTime.Now;
             _repo.Update(item);
             var shoppingCartRecords = _repo.GetAll().ToList();
-            Assert.Equal(1,shoppingCartRecords.Count);
+            Assert.Equal(1, shoppingCartRecords.Count);
             Assert.Equal(5, shoppingCartRecords[0].Quantity);
         }
 
@@ -129,12 +131,14 @@ namespace SpyStore.DAL.Tests.Repos
             _repo.Delete(item.Id, item.TimeStamp);
             Assert.Equal(0, _repo.GetAll().Count());
         }
+
         [Fact]
         public void ShouldNotDeleteMissingCartRecord()
         {
             var item = _repo.Find(0, 32);
-            Assert.Throws<DbUpdateConcurrencyException>(()=>_repo.Delete(200, item.TimeStamp));
+            Assert.Throws<DbUpdateConcurrencyException>(() => _repo.Delete(200, item.TimeStamp));
         }
+
         [Fact]
         public void ShouldThrowWhenAddingToMuchQuantity()
         {
@@ -149,13 +153,14 @@ namespace SpyStore.DAL.Tests.Repos
             var ex = Assert.Throws<InvalidQuantityException>(() => _repo.Update(item));
             Assert.Equal("Can't add more product than available in stock", ex.Message);
         }
+
         [Fact]
         public void ShouldThrowWhenUpdatingTooMuchQuantity()
         {
             var item = _repo.Find(0, 32);
             item.Quantity = 100;
             item.DateCreated = DateTime.Now;
-            var ex = Assert.Throws<InvalidQuantityException>(()=>_repo.Update(item));
+            var ex = Assert.Throws<InvalidQuantityException>(() => _repo.Update(item));
             Assert.Equal("Can't add more product than available in stock", ex.Message);
         }
 
@@ -168,6 +173,7 @@ namespace SpyStore.DAL.Tests.Repos
             var orders2 = new OrderRepo(new OrderDetailRepo()).GetAll();
             Assert.Equal(2, orders2.ToList().Count);
         }
+
         //add tests for quantity check
     }
 }
