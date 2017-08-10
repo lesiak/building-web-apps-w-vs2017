@@ -15,6 +15,14 @@ namespace SpyStore.DAL.EF
 
         public StoreContext(DbContextOptions options) : base(options)
         {
+            //try
+            //{
+            //    Database.Migrate();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex);
+            //}
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
