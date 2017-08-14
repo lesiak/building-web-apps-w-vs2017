@@ -13,6 +13,7 @@ namespace SpyStore.MVC
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
+                .UseUrls("HTTP://*:40002")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
