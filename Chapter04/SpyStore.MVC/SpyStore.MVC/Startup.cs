@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SpyStore.MVC.Authentication;
 using SpyStore.MVC.Configuration;
 using SpyStore.MVC.Filters;
+using SpyStore.MVC.WebServiceAccess;
+using SpyStore.MVC.WebServiceAccess.Base;
 
 namespace SpyStore.MVC
 {
@@ -34,6 +31,7 @@ namespace SpyStore.MVC
             // Add framework services.
             services.AddSingleton(_ => Configuration);
             services.AddSingleton<IWebServiceLocator, WebServiceLocator>();
+            services.AddSingleton<IWebApiCalls, WebApiCalls>();
             services.AddSingleton<IAuthHelper, AuthHelper>();
             services.AddMvc(config => {
                 config.Filters.Add(
