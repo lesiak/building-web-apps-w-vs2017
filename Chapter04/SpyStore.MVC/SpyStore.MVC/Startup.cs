@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SpyStore.MVC.Configuration;
 
 namespace SpyStore.MVC
 {
@@ -30,6 +31,7 @@ namespace SpyStore.MVC
         {
             // Add framework services.
             services.AddSingleton(_ => Configuration);
+            services.AddSingleton<IWebServiceLocator, WebServiceLocator>();
             services.AddMvc();
         }
 
