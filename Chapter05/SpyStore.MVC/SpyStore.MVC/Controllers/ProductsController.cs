@@ -39,7 +39,10 @@ namespace SpyStore.MVC.Controllers
 
         public ActionResult Details(int id)
         {
-            return RedirectToAction(nameof(CartController.AddToCart), nameof(CartController).Replace("Controller", ""), new { customerId = ViewBag.CustomerId, productId = id, cameFromProducts = true });
+            return RedirectToAction(
+                nameof(CartController.AddToCart), 
+                nameof(CartController).Replace("Controller", ""), 
+                new { customerId = ViewBag.CustomerId, productId = id, cameFromProducts = true });
         }
 
         internal async Task<IActionResult> GetListOfProducts(
@@ -72,7 +75,7 @@ namespace SpyStore.MVC.Controllers
             ViewBag.Header = "Featured Products";
             ViewBag.ShowCategory = true;
             ViewBag.Featured = true;
-            return await GetListOfProducts(featured:true);
+            return await GetListOfProducts(featured: true);
         }
 
         [HttpGet]
@@ -87,6 +90,9 @@ namespace SpyStore.MVC.Controllers
         }
 
 
+        //Equivalent to:
+        //[Route("[controller]/[action]/{searchString}")]
+        //[HttpPost]
         [Route("[controller]/[action]")]
         [HttpPost("{searchString}")]
         public async Task<IActionResult> Search(string searchString)

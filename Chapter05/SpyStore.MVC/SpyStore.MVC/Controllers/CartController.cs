@@ -16,7 +16,8 @@ namespace SpyStore.MVC.Controllers
     public class CartController : Controller
     {
         private readonly IWebApiCalls _webApiCalls;
-        readonly MapperConfiguration _config = null;
+        readonly MapperConfiguration _config;
+
         public CartController(IWebApiCalls webApiCalls)
         {
             _webApiCalls = webApiCalls;
