@@ -24,6 +24,9 @@
     <Content Include="wwwroot\images\product-image.png" />
     <Content Include="wwwroot\images\product-thumb.png" />
     <Content Include="wwwroot\images\store-logo.png" />
+    <Content Include="wwwroot\js\validations\errorFormatting.js" />
+    <Content Include="wwwroot\js\validations\validations.min.js" />
+    <Content Include="wwwroot\js\validations\validators.js" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
