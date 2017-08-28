@@ -28,8 +28,9 @@ namespace TypeScriptSamples
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
             app.UseDefaultFiles();
+            app.UseStaticFiles();
+            
         }
     }
 }
