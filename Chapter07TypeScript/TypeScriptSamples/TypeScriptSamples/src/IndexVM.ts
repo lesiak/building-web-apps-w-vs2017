@@ -12,6 +12,10 @@ export class IndexVm {
 
     private productList: Array<IProduct> = new Array(0);
 
+    constructor() {
+        this.loadProducts();
+    }
+
     loginBronze() {
         this.currentCustomer = new CustomerBronze();
         this.setWelcomeMsg();
@@ -31,7 +35,6 @@ export class IndexVm {
     }
 
     displayProducts() {
-        this.loadProducts();
 
         let htmlToDisplay: string = "<th>Product Name</th><th>Price</th>";
 
